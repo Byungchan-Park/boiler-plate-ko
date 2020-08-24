@@ -12,29 +12,29 @@ const userSchema = mongoose.Schema({
   },
   password: {
     type: String,
-    minlength: 5
+    minlength: 5,
   },
   lastname: {
     type: String,
-    maxlength: 50;
+    maxlength: 50,
   },
   role: {
     type: Number,
-    default: 0
+    default: 0,
   },
   image: String,
   token: {
-    type: String
+    type: String,
   },
   // 토큰 이용해서 유효성 관리
   tokenExp: {
-    type: Number
-  }
+    type: Number,
+  },
   // 토큰 유효 기간
 });
 
-const User = mongoose.model('User', userSchema)
+const User = mongoose.model("User", userSchema);
 // 스키마를 모델로 감싸준다.
 
-module.exports = { User }
+module.exports = { User };
 // 다른 곳에서도 쓸 수 있도록 하기 위해
