@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 3000;
+const port = 5000;
 const bodyParser = require("body-parser");
 // bodyParser가 client로부터 오는 정보를 받아준다.
 
@@ -29,15 +29,19 @@ app.get("/", (req, res) => {
   res.send("Hello World! 새해 복 많이 받으세요!!!");
 });
 
+//register 라우터
+//body-parser을 통해서 클라이언트 > 서버 로 넘어오는 데이터를 받을 수 있다. npm install body-parser --save
 app.post("/register", (req, res) => {
   // 회원가입할 때 필요한 정보들을 client에서 가져오면
   // 그것들을 데이터 베이스에 넣어준다.
   const user = new User(req.body);
+  // 여기 자리에서 bCrypt를 이용해 비밀번호가 암호화된다. 암호화 이후 아래 함수가 실행된다.
   user.save((err, userInfo) => {
     if (err) return res.json({ success: false, err });
     return res.status(200).json({
       // status : 200은 성공 상태이다.
       success: true,
+      user,
     });
     // 만약에 성공을 하면 success : true가 뜨게 해줘라.
   });
